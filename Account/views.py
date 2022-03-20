@@ -1,5 +1,6 @@
 from django import http
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import exceptions
 from django.forms import ModelForm
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -73,7 +74,7 @@ class AccountUpdateView(LoginRequiredMixin, UpdateView):
         if qs.created_by == self.request.user:
             return qs
         else:
-            return http.HttpResponseForbidden("Cannot delete other's accounts")
+            raise exceptions.PermissionDenied("Cannot update other's accounts")
 
 
 class AccountDeleteView(LoginRequiredMixin, DeleteView):
@@ -87,4 +88,4 @@ class AccountDeleteView(LoginRequiredMixin, DeleteView):
             instance.delete()
             return http.HttpResponseRedirect(self.success_url)
         else:
-            return http.HttpResponseForbidden("Cannot delete other's accounts")
+            return exceptions.PermissionDenied("Cannot delete other's accounts")
