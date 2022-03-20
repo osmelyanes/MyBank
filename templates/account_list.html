@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Accounts</h1>
+<a href="/accounts/create">Add new</a>
+<a href="/logout">Logout</a>
+<ul>
+    {% for person in object_list %}
+        <li>
+            {{ person.first_name }} {{ person.last_name }} {{ person.iban }}
+            <a href="/accounts/{{ person.id }}/detail">
+                View</a>
+            {% if person.created_by == user %}
+                <a href="/accounts/{{ person.id }}/update">
+                    Edit</a>
+            {% endif %}
+            {% if person.created_by == user %}
+                <a href="/accounts/{{ person.id }}/delete">
+                    Delete</a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No person yet.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
+

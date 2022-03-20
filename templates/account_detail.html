@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Accounts</h1>
+<p>First name: {{ object.first_name }}</p>
+<p>Last name: {{ object.last_name }}</p>
+<p>IBAN: {{ object.iban }}</p>
+<p>Created by: {{ object.created_by }}</p>
+<p>Created timestamp: {{ object.created_timestamp }}</p>
+<p>Updated by: {{ object.created_by }}</p>
+<p>Updated timestamp: {{ object.updated_timestamp }}</p>
+    <a href="{{ view.success_url }}">
+        <input type="button" value="OK"/>
+    </a>
+</body>
+</html>
