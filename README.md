@@ -12,7 +12,7 @@
 
 ## Deployment instructions
 
-###Build automation with Docker 
+### Build automation with Docker 
 - Make sure you have ```Docker Compose``` installed
   ```
   https://docs.docker.com/compose/install/
@@ -41,7 +41,7 @@ Django Admin is also available and sample data can be managed navigating to Acco
   http://localhost:8001/admin
   ``` 
 
-###Manual setup
+### Manual setup
 - Make sure you have ```Python``` installed
   ```
   https://realpython.com/installing-python/
