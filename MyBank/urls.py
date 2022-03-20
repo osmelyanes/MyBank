@@ -23,7 +23,6 @@ from Account import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('tests/', views.tests),
     path('logout/', LogoutView.as_view()),
 
     path('', TemplateView.as_view(template_name="index.html")),
