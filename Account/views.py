@@ -1,6 +1,7 @@
 from django import http
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import exceptions
+from django.core.exceptions import PermissionDenied
 from django.forms import ModelForm
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -82,10 +83,18 @@ class AccountDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "account_delete.html"
     success_url = reverse_lazy('account-list')
 
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.created_by == request.user:
+            instance.delete()
+            return http.HttpResponseRedirect(self.success_url)
+        else:
+            raise PermissionDenied("Cannot delete other's accounts")
+
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
         if instance.created_by == request.user:
             instance.delete()
             return http.HttpResponseRedirect(self.success_url)
         else:
-            return exceptions.PermissionDenied("Cannot delete other's accounts")
+            raise PermissionDenied("Cannot delete other's accounts")
