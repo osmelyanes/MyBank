@@ -66,7 +66,7 @@ Django Admin is also available and sample data can be managed navigating to Acco
 
 Refer to the automation build with Docker for more details
 <br>
-Find starting Django Admin credentials as well as other specifications
+Find also starting Django Admin credentials as well as other specifications above
 
 
 ## Running tests
