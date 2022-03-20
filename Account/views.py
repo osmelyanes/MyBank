@@ -83,14 +83,6 @@ class AccountDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "account_delete.html"
     success_url = reverse_lazy('account-list')
 
-    def get(self, request, *args, **kwargs):
-        instance = self.get_object()
-        if instance.created_by == request.user:
-            instance.delete()
-            return http.HttpResponseRedirect(self.success_url)
-        else:
-            raise PermissionDenied("Cannot delete other's accounts")
-
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
         if instance.created_by == request.user:
